@@ -1,32 +1,52 @@
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title> Calculate Your Carbon Footprint </title>
-<link rel="stylesheet" type="text/css" href="styles.css">  <!-- Link to external CSS -->
-</head>  
-<body>  
-     
-     <center> <h1> <b><span style="font-size: 56px"><font color="#00FF7F">"</font><font color="#848884">Carbon</font><font color="#00FF7F">Aware</font><font color="#848884">"</font></span></b> </h1>  
-        <form onsubmit="takevalue()">
-  <div class="transbox">
-             <span style="font-size: 22px"></span> 
-            <br> <label><b><span style="font-size: 22px">Which type of vehicle do you use to travel?</span></b></label>
-            <br><input type="text" placeholder="Petrol / Diesel / EV" Vehicle="VehicleType" , id="Vehicle" required>
-            <br><label><b><span style="font-size: 22px">Kilometers driven per year :</span></b></label> 
-            <br><input type="text" placeholder="Kms" Kms="Kilometers" , id="Kms" required>
-            <br><label><b><span style="font-size: 22px">Energy Consumption per year : </span></b></label> 
-            <br><input type="text" placeholder="kWh" kWh="kilowatthours" , id="kWh" required>
-            <br><label><b><span style="font-size: 22px">Food Consumption per year in CO2 equivalent :</span></b> </label> 
-            <br><input type="text" placeholder="Kgs" Kgs="Kilograms" , id="Kgs" required>
-            <br><button type="submit"><b><span style="font-size: 22px">Calculate Carbon Footprint</span></b> </button>  
-            <br><button type="button" class="cancelbtn"> <b><span style="font-size: 18px">Cancel</button> </span></b> </center>
-</div>
-    </form>   
-    <script src="CarbonAware.js">
-        
-    </script>
-</body>   
-</html>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CarbonAware - Carbon Footprint Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="theme-toggle">
+    <label class="switch">
+      <input type="checkbox" id="darkModeToggle" />
+      <span class="slider round"></span>
+    </label>
+    <span>Dark Mode</span>
+  </div>
 
- 
+  <h1 class="title">
+    <span class="green">"</span><span class="gray">Carbon</span><span class="green">Aware</span><span class="gray">"</span>
+  </h1>
+
+  <form id="carbonForm">
+    <label for="Vehicle">Type of vehicle used for travel:</label>
+    <select id="Vehicle" required>
+      <option value="">-- Select Vehicle Type --</option>
+      <option value="petrol">Petrol</option>
+      <option value="diesel">Diesel</option>
+      <option value="ev">Electric Vehicle (EV)</option>
+    </select>
+
+    <label for="Kms">Kilometers driven per year:</label>
+    <input type="number" id="Kms" placeholder="e.g. 12000" required />
+
+    <label for="kWh">Energy Consumption per year (kWh):</label>
+    <input type="number" id="kWh" placeholder="e.g. 3000" required />
+
+    <label for="Kgs">Food Consumption per year in CO₂ (kg):</label>
+    <input type="number" id="Kgs" placeholder="e.g. 800" required />
+
+    <button type="submit">Calculate Carbon Footprint</button>
+    <button type="button" class="cancelbtn" onclick="resetForm()">Cancel</button>
+  </form>
+
+  <div id="resultBox" class="hidden"></div>
+
+  <div id="gaugeBar">
+  <div id="gaugeFill"></div>
+</div>
+
+  <script src="CarbonAware.js"></script>
+</body>
+</html>
