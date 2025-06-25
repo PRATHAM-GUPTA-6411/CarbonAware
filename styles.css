@@ -1,69 +1,215 @@
-/* styles.css */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --form-bg: rgba(64, 224, 208, 0.8);
+  --result-bg: rgba(255, 255, 255, 0.9);
+}
 
-/* Transbox style */
-div.transbox {
-    margin: 5px;
-    background-color: #40E0D0;
-    border: 1px;
-    border-radius: 10%;
-    opacity: 0.8;
-  }
-  
-  div.transbox p {
-    margin: 10%;
-    font-weight: bold;
-    color: #000000;
-  }
-  
-  /* Body style */
-  body {
-    font-family: Calibri, Helvetica, sans-serif;
-    background-image: url('https://i.ibb.co/zfB03jb/windmillgif.gif');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-  }
-  
-  /* Button style */
-  button { 
-    background-color: #6DD627; 
-    width: 80%;
-    color: black; 
-    padding: 5px; 
-    margin: 5px 0px; 
-    border-radius: 10%; 
-    cursor: pointer; 
-  } 
-  
-  /* Form style */
-  form { 
-    height: 497px;
-    width: 450px;
-    border: 5px solid #966F33;
-    border-radius: 10%;
-    margin: 60px 510px;
-  } 
-  
-  /* Input field style */
-  input[type=text], input[type=password] { 
-    width: 40%; 
-    margin: 10px 0;
-    padding: 12px 20px; 
-    display: inline-block; 
-    border: 2px solid green; 
-    box-sizing: border-box;
-    border-radius: 10%; 
-  }
-  
-  /* Button hover effect */
-  button:hover { 
-    opacity: 0.7; 
-  }
-  
-  /* Cancel button style */
-  .cancelbtn { 
-    width: auto; 
-    padding: 10px 18px;
-    margin: 5px 5px;
-  } 
-  
+body.dark-mode {
+  background-image: url('https://influx-inc.com/commons/images/4_4.gif'); /* Dark mode GIF */
+  background-color: #121212;
+  text-color: #ffffff;
+}
+
+body {
+  background-image: url('https://i.ibb.co/zfB03jb/windmillgif.gif'); /* Light mode GIF */
+  background-color: var(--bg-color);
+  background-size: cover;
+  background-attachment: fixed;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.title {
+  font-size: 56px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.green {
+  color: #00ff7f;
+}
+
+.gray {
+  color: #848884;
+}
+
+form {
+  background-color: rgba(245, 245, 245, 0.92); /* light gray, semi-transparent */
+  border: 5px solid #966f33;
+  border-radius: 20px;
+  padding: 30px 40px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  margin: 40px auto;
+  box-sizing: border-box;
+}
+
+
+label, 
+input::placeholder,
+select,
+textarea,
+h1, h2, h3, p, span, b {
+  color: var(--text-color);
+}
+
+label {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 15px;
+  display: block;
+  color: var(--text-color) !important;
+}
+label span {
+  color: var(--text-color) !important;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  border: 2px solid green;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: color-mix(in srgb, var(--text-color) 60%, transparent);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button[type='submit'] {
+  background-color: #6dd627;
+  color: black;
+}
+
+.cancelbtn {
+  background-color: #f44336;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* Result Box */
+#resultBox {
+  background-color: var(--result-bg);
+  padding: 25px;
+  border-radius: 12px;
+  margin: 30px auto; /* 👈 this centers the box */
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+.category-low {
+  color: green;
+  font-weight: bold;
+}
+
+.category-medium {
+  color: orange;
+  font-weight: bold;
+}
+
+.category-high {
+  color: red;
+  font-weight: bold;
+}
+
+/* Gauge Container */
+.gauge-container {
+  background-color: #e0e0e0; /* soft gray */
+  border-radius: 20px;
+  margin-top: 20px;
+  overflow: hidden;
+  height: 25px;
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Gauge Fill Bar */
+.gauge-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, green, yellow, orange, red);
+  border-radius: 20px 0 0 20px; /* round only the left side */
+  transition: width 1.2s ease-in-out;
+}
+
+/* Dark Mode Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  margin-right: 8px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
